@@ -1,6 +1,7 @@
 steps:
-  - name: 'gcr.io/cloud-builders/mvn'
-    args: ['install']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '--tag=gcr.io/$PROJECT_ID/spring-boot', '.']
-images: ['gcr.io/$PROJECT_ID/spring-boot']
+  - name: maven:3.3-jdk-8
+    entrypoint: mvn
+    args: ['test']
+  - name: maven:3.3-jdk-8
+    entrypoint: mvn
+    args: ['package','-Dmaven.test.skip=true']
