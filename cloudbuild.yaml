@@ -1,4 +1,4 @@
 steps:
   - name: maven:3.8.5-openjdk-17
     entrypoint: mvn
-    args: [ '-DskipTests com.google.cloud.tools:jib-maven-plugin:build','-Dimage=us-central1-docker.pkg.dev//dockerrep/gclearn:v2' ]
+    args: [ 'com.google.cloud.tools:jib-maven-plugin:build','-Dimage=us-central1-docker.pkg.dev//dockerrep/gclearn:v2' ]
