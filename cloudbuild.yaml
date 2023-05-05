@@ -5,3 +5,10 @@ steps:
   - name: maven:3.8.5-openjdk-17
     entrypoint: mvn
     args: ['spring-boot:build-image','-Dmaven.test.skip=true']
+artifacts:
+  mavenArtifacts:
+    - repository: 'https://us-central1-maven.pkg.dev/kube-gke-385515/gclearnrepo'
+      path: '/'
+      artifactId: 'gclearn'
+      groupId: 'com.mager.app.gclearn'
+      version: '0.0.1'
