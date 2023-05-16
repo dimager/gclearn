@@ -1,0 +1,43 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "gclearn"
+  namespace: "default"
+  labels:
+    app: "gclearn"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "gclearn"
+  template:
+    metadata:
+      labels:
+        app: "gclearn"
+    spec:
+      containers:
+        - name: "gclearn-sha256-1"
+          image: "us-central1-docker.pkg.dev/kube-gke-385515/dockerrep/gclearn@sha256:0da28749eb1268b47f1ce35be8b13720aab3bcd180c5291660806c35d7b688c9"
+---
+apiVersion: "autoscaling/v2"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "gclearn-hpa-shuq"
+  namespace: "default"
+  labels:
+    app: "gclearn"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "gclearn"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: "Resource"
+      resource:
+        name: "cpu"
+        target:
+          type: "Utilization"
+          averageUtilization: 80
