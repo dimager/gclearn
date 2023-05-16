@@ -8,7 +8,7 @@ steps:
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
       - run
-      - --filename=/kube-res-file.yaml
+      - --filename=kube-res-file.yaml
       - --image=gcr.io/kube-gke-385515/gclearn:v6
       - --location=${_CLOUDSDK_COMPUTE_ZONE}
       - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
