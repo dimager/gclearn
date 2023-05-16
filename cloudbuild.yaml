@@ -5,3 +5,10 @@ steps:
   - name: maven:3.8.5-openjdk-17
     entrypoint: mvn
     args: [ '-DskipTests', 'com.google.cloud.tools:jib-maven-plugin:build','-Dimage=us-central1-docker.pkg.dev/kube-gke-385515/dockerrep/gclearn:v6' ]
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+      - run
+      - --filename=/
+      - --image=gcr.io/kube-gke-385515/gclearn:v6
+      - --location=${_CLOUDSDK_COMPUTE_ZONE}
+      - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
