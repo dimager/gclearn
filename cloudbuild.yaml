@@ -9,6 +9,6 @@ steps:
     args:
       - run
       - --filename=kube-res-file.yaml
-      - --image=gcr.io/kube-gke-385515/gclearn:v6
-      - --location=${_CLOUDSDK_COMPUTE_ZONE}
-      - --cluster=${_CLOUDSDK_CONTAINER_CLUSTER}
+      - --image=us-central1-docker.pkg.dev/kube-gke-385515/dockerrep/gclearn:v6
+      - --location=us-central1-a
+      - --cluster=mager-cluster
